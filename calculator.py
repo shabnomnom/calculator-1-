@@ -9,20 +9,27 @@ from arithmetic import *
 
 # Your code goes here
 def get_input():
-
+	operation = ['+', '-', '*', '/', 'square', 'cube', 'pow', 'mod']
 	user_input = input('> ')
 	user_input = user_input.split(' ')
-	if len(user_input) == 1:
-		return user_input
-	if len(user_input) == 2:
-		user_input[1] = int(user_input[1])
-		return user_input
-	elif len(user_input) == 3:
-		user_input[1] = int(user_input[1])
-		user_input[2] = int(user_input[2])
-		return user_input
+	if user_input[0] in operation:
+		if len(user_input) == 1:
+			return user_input
+		if len(user_input) == 2 and user_input[1].isdigit():
+			user_input[1] = int(user_input[1])
+			return user_input
+		elif len(user_input) == 3 and user_input[1].isdigit() and user_input[2].isdigit():
+			user_input[1] = int(user_input[1])
+			user_input[2] = int(user_input[2])
+			return user_input
+		else:
+			return 'Not a valid option'
+	else:
+		return 'Not a valid option'
 
 def prefix_calculator():
+
+	print('Enter the operation you\'d like to perform.')
 
 	user_input = get_input()
 
@@ -67,6 +74,10 @@ def prefix_calculator():
 
 			modulo = mod(user_input[1], user_input[2])
 			print(modulo)
+
+		elif user_input == 'Not a valid option':
+
+			print('Enter a valid operation.')
 
 		user_input = get_input()
 
